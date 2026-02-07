@@ -1,0 +1,32 @@
+[project]
+name = "automo-web-app"
+version = "0.1.0"
+dependencies = [
+    "flask",
+    "requests",
+    "pyjwt",
+    "python-dotenv",
+    "flask-sqlalchemy",
+    "werkzeug",
+    "waitress",
+    "flask-cors",
+    "google-genai",
+    "redis",
+    "weasyprint",
+    "markdown",
+    "pillow",
+    "imagehash",
+    "scikit-learn==1.6.1",
+    "pandas",
+    "numpy",
+    "joblib",
+    "matplotlib",
+    "pyarrow",
+    "fastparquet",
+    "openai"
+]
+
+[tool.uv.workspace]
+members = [
+    "inference"
+]

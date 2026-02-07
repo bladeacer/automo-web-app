@@ -1,0 +1,28 @@
+[project]
+name = "inference"
+version = "0.1.0"
+dependencies = [
+    "waitress",
+    "flask",
+    "flask-cors",
+    "ultralytics",
+    "opencv-python-headless",
+    "numpy",
+    "pillow",
+    "diffusers",
+    "accelerate",
+    "openvino",
+    "torch",
+    "torchvision",
+    "transformers"
+]
+
+# Tell uv to look at the PyTorch specific index for CUDA 12.1/12.4
+[[tool.uv.index]]
+name = "pytorch-cuda"
+url = "https://download.pytorch.org/whl/cu121" # More stable, works on CUDA 12.4+ drivers
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cuda" }]
+torchvision = [{ index = "pytorch-cuda" }]

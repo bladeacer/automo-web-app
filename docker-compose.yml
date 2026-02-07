@@ -1,0 +1,87 @@
+services:
+  inference-api:
+    build:
+      context: ./inference
+      dockerfile: Dockerfile
+    container_name: inference_service
+    restart: unless-stopped
+    volumes:
+      - ./inference:/app
+      - hf_cache:/root/.cache/huggingface
+    environment:
+      - HF_HOME=/root/.cache/huggingface
+    ports:
+      - "5001:5001"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  goatcounter:
+    image: arp242/goatcounter:latest
+    container_name: automo_analytics
+    restart: always
+    command: serve -db "sqlite+ /db/goatcounter.sqlite" -listen "0.0.0.0:8081" -tls none -automigrate
+    environment:
+      - GOATCOUNTER_DB=sqlite+ /db/goatcounter.sqlite
+    volumes:
+      - goatcounter-data:/db # Use named volume
+    ports:
+      - "8081:8081"
+
+  cache-db:
+    image: 'eqalpha/keydb:latest'
+    container_name: automo_cache
+    restart: always
+    command: >
+      keydb-server 
+      --server-threads 4 
+      --maxmemory 512mb 
+      --maxmemory-policy allkeys-lru
+      --appendonly no
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    ports:
+      - "6379:6379"
+
+  ts-model-api:
+    image: bladeacer/automo-ts:latest
+    container_name: bladeacer_model_api
+    env_file: .env
+    expose:
+      - "5000"
+    restart: always
+
+  automo-web-app:
+    build: .
+    container_name: automo_web_app
+    env_file: .env
+    ports:
+      - "8080:8080"
+    environment:
+      - INFERENCE_API_URL=http://inference-api:5001
+      - MODEL_API_URL=http://ts-model-api:5000
+      - KEYDB_URL=redis://cache-db:6379/0
+      - PYTHONPATH=/app
+    depends_on:
+      inference-api: { condition: service_started }
+      ts-model-api: { condition: service_started }
+      cache-db: { condition: service_started }
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - __pycache__/
+        - action: rebuild
+          path: pyproject.toml
+
+volumes:
+  hf_cache:
+  goatcounter-data:

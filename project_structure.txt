@@ -1,0 +1,231 @@
+ .
+├──  client
+│   ├──  index.html
+│   ├──  LICENSE
+│   ├──  package-lock.json
+│   ├──  package.json
+│   ├──  postcss.config.cjs
+│   ├──  public
+│   │   ├──  logo
+│   │   │   └── 󰕙 logo-light-full.svg
+│   │   └──  navigationExamples
+│   │       ├──  CollapsedSideBar.png
+│   │       ├──  DeckedSideBarImage.png
+│   │       ├──  DeckedSideBarImage1.png
+│   │       ├──  SimpleSideBar.png
+│   │       └──  SimpleSideBar1.png
+│   ├── 󰂺 README.md
+│   ├── 󰣞 src
+│   │   ├──  @types
+│   │   │   ├──  auth.ts
+│   │   │   ├──  layout.ts
+│   │   │   ├──  navigation.ts
+│   │   │   └──  routes.tsx
+│   │   ├──  App.tsx
+│   │   ├──  components
+│   │   │   ├──  ColorSchemeToggle
+│   │   │   │   └──  ColorSchemeToggle.tsx
+│   │   │   ├──  Forecast
+│   │   │   │   └──  ForecastChart.tsx
+│   │   │   ├──  Layout
+│   │   │   │   ├──  AuthLayout.tsx
+│   │   │   │   ├──  Layout.tsx
+│   │   │   │   ├──  LayoutTypes
+│   │   │   │   │   ├──  CollapsedSideBar.module.css
+│   │   │   │   │   ├──  CollapsedSideBar.tsx
+│   │   │   │   │   ├──  CollapsibleAppShell.tsx
+│   │   │   │   │   ├──  CollapsibleAppShellBottomContent.tsx
+│   │   │   │   │   ├──  CollaspibleAppShellHeading.tsx
+│   │   │   │   │   ├──  DeckedSideBar.module.css
+│   │   │   │   │   ├──  DeckedSideBar.tsx
+│   │   │   │   │   ├──  Heading.module.css
+│   │   │   │   │   ├──  PlainLayout.tsx
+│   │   │   │   │   ├──  SimpleSideBar.module.css
+│   │   │   │   │   ├──  SimpleSideBar.tsx
+│   │   │   │   │   └──  SimpleSideBarBottomContent.tsx
+│   │   │   │   ├──  LinksGroup.module.css
+│   │   │   │   ├──  LinksGroup.tsx
+│   │   │   │   └──  Views.tsx
+│   │   │   ├──  LoadingScreen
+│   │   │   │   ├──  LoadingScreen.module.css
+│   │   │   │   └──  LoadingScreen.tsx
+│   │   │   ├──  UserPopOver
+│   │   │   │   ├──  CollapsedSideBarUserPopOver.tsx
+│   │   │   │   ├──  CollapsedUserPopOverContent.module.css
+│   │   │   │   ├──  CollapsedUserPopOverContent.tsx
+│   │   │   │   ├──  PopOverTargetContent.module.css
+│   │   │   │   ├──  PopOverTargetContent.tsx
+│   │   │   │   └──  UserPopOver.tsx
+│   │   │   └──  Welcome
+│   │   │       ├──  Welcome.module.css
+│   │   │       ├──  Welcome.story.tsx
+│   │   │       ├──  Welcome.test.tsx
+│   │   │       └──  Welcome.tsx
+│   │   ├──  configs
+│   │   │   ├──  app.config.ts
+│   │   │   ├──  navigation.config
+│   │   │   │   └──  index.tsx
+│   │   │   └──  routes.config
+│   │   │       ├──  authRoute.tsx
+│   │   │       ├──  index.ts
+│   │   │       ├──  routes.config.ts
+│   │   │       └──  search.config.ts
+│   │   ├──  constants
+│   │   │   ├──  api.constant.ts
+│   │   │   └──  app.constant.ts
+│   │   ├── 󰕙 favicon.svg
+│   │   ├──  index.css
+│   │   ├──  locales
+│   │   │   ├──  index.ts
+│   │   │   ├──  lang
+│   │   │   │   ├──  en.json
+│   │   │   │   ├──  errors
+│   │   │   │   │   ├──  en.json
+│   │   │   │   │   ├──  es.json
+│   │   │   │   │   └──  tr.json
+│   │   │   │   ├──  es.json
+│   │   │   │   └──  tr.json
+│   │   │   └──  locales.ts
+│   │   ├──  main.tsx
+│   │   ├──  mock
+│   │   │   ├──  data
+│   │   │   │   └──  authData.ts
+│   │   │   ├──  fakeApi
+│   │   │   │   └──  authFakeApi.ts
+│   │   │   └──  mock.ts
+│   │   ├──  pages
+│   │   │   ├──  auth
+│   │   │   │   ├──  SignIn.module.css
+│   │   │   │   ├──  SignIn.tsx
+│   │   │   │   └──  SignUp.tsx
+│   │   │   ├──  chatbot
+│   │   │   │   └──  Chatbot.tsx
+│   │   │   ├──  detection
+│   │   │   │   └──  Detection.tsx
+│   │   │   ├──  main
+│   │   │   │   ├──  Analytics.tsx
+│   │   │   │   ├──  home.module.css
+│   │   │   │   ├──  Home.tsx
+│   │   │   │   ├──  Search.module.css
+│   │   │   │   ├──  Search.tsx
+│   │   │   │   └──  Settings.tsx
+│   │   │   ├──  simulation
+│   │   │   │   └──  Simulation.tsx
+│   │   │   └──  ts-forecast
+│   │   │       ├──  Dashboard.tsx
+│   │   │       ├──  Files.tsx
+│   │   │       ├──  Manage.tsx
+│   │   │       ├──  Pages.tsx
+│   │   │       └──  Report.tsx
+│   │   ├──  route
+│   │   │   ├──  AppRoute.tsx
+│   │   │   ├──  AuthorityCheck.tsx
+│   │   │   ├──  AuthorityGuard.tsx
+│   │   │   ├──  ProtectedRoute.tsx
+│   │   │   └──  PublicRoute.tsx
+│   │   ├──  services
+│   │   │   ├──  ApiService.ts
+│   │   │   ├──  auth
+│   │   │   │   └──  auth.service.ts
+│   │   │   ├──  BaseService.ts
+│   │   │   ├──  DetectionService.ts
+│   │   │   └──  ForecastService.ts
+│   │   ├──  store
+│   │   │   ├──  hook.ts
+│   │   │   ├──  index.ts
+│   │   │   ├──  rootReducer.ts
+│   │   │   ├──  slices
+│   │   │   │   ├──  auth
+│   │   │   │   │   ├──  constants.ts
+│   │   │   │   │   ├──  index.ts
+│   │   │   │   │   ├──  sessionSlice.ts
+│   │   │   │   │   ├──  userInfoSlice.ts
+│   │   │   │   │   └──  userSlice.ts
+│   │   │   │   ├──  base
+│   │   │   │   │   ├──  commonSlice.ts
+│   │   │   │   │   ├──  constants.ts
+│   │   │   │   │   └──  index.ts
+│   │   │   │   ├──  locale
+│   │   │   │   │   ├──  index.ts
+│   │   │   │   │   └──  localeSlice.ts
+│   │   │   │   └──  theme
+│   │   │   │       ├──  index.ts
+│   │   │   │       └──  themeSlice.ts
+│   │   │   └──  storeSetup.ts
+│   │   ├──  theme.ts
+│   │   ├──  utils
+│   │   │   ├──  deepParseJson.ts
+│   │   │   └──  hooks
+│   │   │       ├──  useAuth.ts
+│   │   │       ├──  useAuthority.ts
+│   │   │       ├──  useLocale.ts
+│   │   │       └──  useQuery.ts
+│   │   └──  vite-env.d.ts
+│   ├──  test-utils
+│   │   ├──  index.ts
+│   │   └──  render.tsx
+│   ├──  tsconfig.json
+│   ├──  vite.config.mjs
+│   └──  vitest.setup.mjs
+├──  docker-compose.yml
+├──  Dockerfile
+├──  Dockerfile.test
+├──  goatcounter-data
+├──  images
+│   ├──  architecture.jpg
+│   └──  'Inpainting test'
+│       ├──  img
+│       │   ├──  'Car damages 929.png'
+│       │   ├──  'Car damages 930.png'
+│       │   ├──  'Car damages 931.png'
+│       │   ├──  'Car damages 932.jpg'
+│       │   ├──  'Car damages 933.png'
+│       │   ├──  'Car damages 934.png'
+│       │   ├──  'Car damages 935.png'
+│       │   ├──  'Car damages 936.png'
+│       │   ├──  'Car damages 937.png'
+│       │   └──  'Car damages 938.png'
+│       └──  masks
+│           ├──  'Car damages 929.png'
+│           ├──  'Car damages 930.png'
+│           ├──  'Car damages 931.png'
+│           ├──  'Car damages 932.png'
+│           ├──  'Car damages 933.png'
+│           ├──  'Car damages 934.png'
+│           ├──  'Car damages 935.png'
+│           ├──  'Car damages 936.png'
+│           ├──  'Car damages 937.png'
+│           └──  'Car damages 938.png'
+├──  inference
+│   ├──  app.py
+│   ├──  Dockerfile
+│   ├──  models
+│   │   └──  best_int8_openvino_model
+│   │       ├──  best.bin
+│   │       ├── 󰗀 best.xml
+│   │       └──  metadata.yaml
+│   ├──  pyproject.toml
+│   └──  sanity_check.py
+├──  Makefile
+├──  manage.ps1
+├──  project_structure.txt
+├──  pyproject.toml
+├── 󰂺 README.md
+├──  server
+│   ├──  __init__.py
+│   ├──  app.py
+│   ├──  extensions.py
+│   ├──  models
+│   │   ├──  __init__.py
+│   │   └──  user.py
+│   ├──  routes
+│   │   ├──  __init__.py
+│   │   ├──  bladeacer_sarima_ts.py
+│   │   ├──  ft_obj_det.py
+│   │   └──  shl_obsl_parts.py
+│   └──  utils
+│       ├──  __init__.py
+│       └──  auth.py
+├──  tests
+│   └──  test_api.py
+└──  uv.lock
