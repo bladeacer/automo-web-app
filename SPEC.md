@@ -224,6 +224,8 @@ Made use of pyproject.toml for modern dependency management.
 └── ...
 ```
 
+![Backend structure](./images/backend.png)
+
 Modular codebase with [Service Oriented Architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture),
 following a MVC pattern across a decoupled service architecture
 
@@ -273,6 +275,7 @@ back takes less than a second.
 Cache also accounts for route parameters, so the cache for a SARIMA forecast of
 48 months vs 12 months would be different.
 
+![benchmark results](./images/tests.jpg)
 
 ### Supervised learning model
 

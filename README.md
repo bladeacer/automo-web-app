@@ -11,6 +11,10 @@ Development was done on a separate private repository.
 
 ![high-level software architecture diagram](./images/architecture.jpg)
 
+## Backend service
+
+![Backend structure](./images/backend.png)
+
 ## Integration: Feature Specification
 
 Attributing feature/lines of code to a specific group member.
