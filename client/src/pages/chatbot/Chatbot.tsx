@@ -80,7 +80,7 @@ export default function Chatbot() {
           ) : (
             <IconCheck size={18} color="var(--mantine-color-green-filled)" />
           )}
-          <Text size="xs" c="dimmed" style={{ maxWidth: '300px', lineHeight: 1.2 }}>
+          <Text size="xs" c="dimmed" style={{ maxWidth: '300px', lineHeight: 1.2, whiteSpace: 'pre-wrap' }}>
             {item.genai_message}
           </Text>
         </Group>
@@ -172,7 +172,6 @@ export default function Chatbot() {
               </Group>
             </Box>
             
-            {/* Added Generic Type Here */}
             <DataTable<ReorderPrediction> 
               data={predictions} 
               columns={tableColumns}
