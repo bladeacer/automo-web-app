@@ -1,10 +1,3 @@
-# Note
-
-As sensitive client data was used to trained a group member's code, their
-relevant source code was removed from this repository.
-
-Development was done on a separate private repository.
-
 # high-level software architecture diagram
 
 ![high-level software architecture diagram](./images/architecture.jpg)
@@ -224,8 +217,6 @@ Made use of pyproject.toml for modern dependency management.
 └── ...
 ```
 
-![Backend structure](./images/backend.png)
-
 Modular codebase with [Service Oriented Architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture),
 following a MVC pattern across a decoupled service architecture
 
@@ -275,11 +266,12 @@ back takes less than a second.
 Cache also accounts for route parameters, so the cache for a SARIMA forecast of
 48 months vs 12 months would be different.
 
-![benchmark results](./images/tests.jpg)
+```ans
+```
 
 ### Supervised learning model
 
-Supervised learning model is in another git branch. Trained on dataset from data.gov.sg.
+Supervised learning model is in another git branch, directory structure as such:
 
 ### Backend
 
@@ -370,6 +362,7 @@ Object Detection to identity damaged car parts and Generative inpainting.
 ---
 
 # Shyann/232297X-ShL
+
 ```
 ├──  server
 │   ├── ...
@@ -386,7 +379,26 @@ Object Detection to identity damaged car parts and Generative inpainting.
 
 Plotting of graph for model obsolescence with simulation and state snapshot.
 
-Source code was removed due to dealing with sensitive client data.
+### Obsolescence Graph
+Raw data was cleaned and aggregated to reduce potential noise.
+
+Uses a supervised regression model, trained off of the features around UnitValue (determined as the cost of each partno) and the PartAge (the predicted age of the item), to predict the value of a part at a given period of time. 
+
+An obsolescence score calculates the risk of the item becoming obsolete, ranging from -1 to 1. -1 being not at risk of obsolescence. Obsolete here means that the part has little to no return in value. 
+
+The graph is focused on a Part Number to Month level. A part is selected, and the graph shows the UnitValue of the PartNo over the months of purchase, and a dot shows the approximate value of the PartNo in 12 months. The obsolescence score is showed, along with the predicted price, and the risk level.
+
+
+### Risk Scenario Generator
+Generated using an API connection to Gemini 2.5 flash.
+
+Receives metrics like risk level, the score and the life ratio of the PartNo, and generates a single scenario on the impact of said scenario. No re-computation or numerical results to prevent "hallucinating" risk metrics. 
+
+Each scenario is in the format of a json, containing: Scenario name, scenario type (baseline, upside, downside), the description and reasoning, the liquidity risk, and the value of the item/stock. The chance of each scenario type is even, and the reasoning changes across runs.
+
+The model is able to run at lower temperatures (was originally 0.2) to give strict clarity and reduce chance of creative json structuring. A higher temperature set while making it more creative has it being to generate varying sceanrios while still under the set scenario types.
+
+Should the LLM not be able to generate in a proper Json structure, the scenario could be retry 2 more times until it times out. If it times out, the scenario generator section would default with values at 0 or state the function timed out.
 
 ---
 
